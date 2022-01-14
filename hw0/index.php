@@ -5,3 +5,5 @@
  * Date: 14.01.2022
  * Time: 20:03
  */
+
+require_once 'functions.php';
