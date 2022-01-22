@@ -10,6 +10,8 @@ namespace Rate;
 
 class Rate_Base extends Rate_Abstract
 {
+    protected string $name = 'Базовый';
+
     protected float $pricePerKm = 10;
     protected float $pricePerMinute = 3;
 }

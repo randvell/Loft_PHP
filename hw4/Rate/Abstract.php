@@ -10,6 +10,8 @@ namespace Rate;
 
 abstract class Rate_Abstract implements Rate_Interface
 {
+    protected string $name = '';
+
     protected float $pricePerKm = 0;
     protected float $pricePerMinute = 0;
     protected float $pricePerHour = 0;
@@ -45,26 +47,12 @@ abstract class Rate_Abstract implements Rate_Interface
     }
 
     /**
-     * Установка пройденного километража
+     * Получить название метода
      *
-     * @param float $km
-     * @return $this
+     * @return string
      */
-    public function setKm(float $km): self
+    public function getName(): string
     {
-        $this->km = $km;
-        return $this;
-    }
-
-    /**
-     * Установка времени в пути
-     *
-     * @param float $minutes
-     * @return $this
-     */
-    public function setTime(float $minutes): self
-    {
-        $this->minutes = $minutes;
-        return $this;
+        return $this->name;
     }
 }

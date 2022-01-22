@@ -23,11 +23,15 @@ trait Service_Trait
      */
     public function applyService(Service $service): void
     {
-        if (in_array($service::class, $this->appliedService, true)) {
+        $serviceType = $service::class;
+        if (array_key_exists($serviceType, $this->appliedService)) {
             return;
         }
 
-        $this->appliedService[] = $service::class;
+        echo(sprintf('Добавлен сервис: %s', $service->getName()));
+        echo '<br>';
+
+        $this->appliedService[$serviceType] = $service;
     }
 
     /**
@@ -75,7 +79,7 @@ trait Service_Trait
      */
     public function printInfo(): void
     {
-        echo sprintf('%s Minutes %s KM, Price: %s (Service: %s)',
+        echo sprintf('%s minutes | %s km -> <b>Price: %s + Service: %s</b>',
             $this->minutes,
             $this->km,
             $this->getRateCost(),

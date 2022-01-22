@@ -16,4 +16,11 @@ interface Rate_Interface
      * @return float
      */
     function getTotalCost(): float;
+
+    /**
+     * Получить название метода
+     *
+     * @return string
+     */
+    function getName(): string;
 }

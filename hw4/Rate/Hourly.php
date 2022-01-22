@@ -10,5 +10,7 @@ namespace Rate;
 
 class Rate_Hourly extends Rate_Abstract
 {
+    protected string $name = 'Почасовой';
+
     protected float $pricePerHour = 200;
 }

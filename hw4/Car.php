@@ -10,7 +10,9 @@ use Rate\Rate_Abstract as Rate;
 
 class Car
 {
-    use Service_Trait;
+    use Service_Trait {
+        printInfo as public traitPrintInfo;
+    }
 
     protected Rate $rate;
 
@@ -25,6 +27,9 @@ class Car
     public function __construct(Rate $rate)
     {
         $this->rate = $rate;
+
+        echo('Взят автомобиль по тарифу: ' . $rate->getName());
+        echo '<br>';
     }
 
     /**
@@ -66,6 +71,10 @@ class Car
      */
     public function printInfo(): void
     {
-        echo sprintf('%s Minutes %s KM, Price: %s', $this->minutes, $this->km, $this->getTotalCost());
+        if ($this->appliedService) {
+            $this->traitPrintInfo();
+        } else {
+            echo sprintf('%s minutes | %s km -> <b>Price: %s</b>', $this->minutes, $this->km, $this->getTotalCost());
+        }
     }
 }

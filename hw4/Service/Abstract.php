@@ -10,11 +10,23 @@ namespace Service;
 
 abstract class Service_Abstract
 {
+    protected string $name = '';
+
     protected float $pricePerService = 0;
 
     protected float $pricePerKm = 0;
     protected float $pricePerMinute = 0;
     protected float $pricePerHour = 0;
+
+    /**
+     * Получить название услуги
+     *
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
 
     abstract function getTotalCost(float $minutes = 0, float $km = 0): float;
 

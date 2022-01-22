@@ -10,6 +10,8 @@ namespace Service;
 
 class Service_Gps extends Service_Abstract
 {
+    protected string $name = 'GPS';
+
     protected float $pricePerHour = 15;
 
     function getTotalCost(float $minutes = 0, float $km = 0): float

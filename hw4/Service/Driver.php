@@ -10,6 +10,8 @@ namespace Service;
 
 class Service_Driver extends Service_Abstract
 {
+    protected string $name = 'Дополнительный водитель';
+
     protected float $pricePerService = 100;
 
     function getTotalCost(float $minutes = 0, float $km = 0): float
