@@ -10,9 +10,7 @@ use Rate\Rate_Abstract as Rate;
 
 class Car
 {
-    use Service_Trait {
-        printInfo as public traitPrintInfo;
-    }
+    use Service_Trait;
 
     protected Rate $rate;
 
@@ -33,11 +31,24 @@ class Car
     }
 
     /**
-     * Получить итоговую стоимость поездки
+     * Подсчитать итоговую стоимость поездки с учетом сервиса
      *
      * @return float
      */
     public function getTotalCost(): float
+    {
+        $serviceCost = $this->getServiceCost();
+        $rateCost = $this->getRateCost();
+
+        return $rateCost + $serviceCost;
+    }
+
+    /**
+     * Получить стоимость поездки по тарифу
+     *
+     * @return float
+     */
+    public function getRateCost(): float
     {
         return $this->rate->getTotalCost($this->minutes, $this->km);
     }
@@ -72,7 +83,11 @@ class Car
     public function printInfo(): void
     {
         if ($this->appliedService) {
-            $this->traitPrintInfo();
+            echo sprintf('%s minutes | %s km -> <b>Price: %s + Service: %s</b>',
+                $this->minutes,
+                $this->km,
+                $this->getRateCost(),
+                $this->getServiceCost());
         } else {
             echo sprintf('%s minutes | %s km -> <b>Price: %s</b>', $this->minutes, $this->km, $this->getTotalCost());
         }

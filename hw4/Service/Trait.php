@@ -35,31 +35,6 @@ trait Service_Trait
     }
 
     /**
-     * Подсчитать стоимость поездки с учетом сервиса
-     *
-     * @return float
-     */
-    public function getTotalCost(): float
-    {
-        $serviceCost = $this->getServiceCost();
-        $rateCost = $this->getRateCost();
-
-        return $rateCost + $serviceCost;
-    }
-
-    /**
-     * Получить стоимость поездки по тарифу
-     *
-     * @return float
-     */
-    public function getRateCost(): float
-    {
-        /** @var Rate $rate */
-        $rate = $this->rate;
-        return $rate->getTotalCost($this->minutes, $this->km);
-    }
-
-    /**
      * Получить стоимость поездки с учетом сервиса
      *
      * @return float
@@ -72,17 +47,5 @@ trait Service_Trait
         }
 
         return $serviceCost;
-    }
-
-    /**
-     * Вывести информацию о поездке
-     */
-    public function printInfo(): void
-    {
-        echo sprintf('%s minutes | %s km -> <b>Price: %s + Service: %s</b>',
-            $this->minutes,
-            $this->km,
-            $this->getRateCost(),
-            $this->getServiceCost());
     }
 }
